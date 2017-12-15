@@ -1,0 +1,154 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>Dashboard <small>Welcome {{session.username}}</small></h1>
+<a class='btn btn-success' href='/search_room'>Make Reservation</a>
+<a class='btn btn-default' href='/add_review_1'>Add Review</a>
+<h3>Customer Information</h3>
+<p><b>Username:</b> {{user.username}}</p>
+<p><b>Name:</b> {{user.name}}</p>
+<p><b>Email:</b> {{user.email}}</p>
+<p><b>Address:</b> {{user.address}}</p>
+<p><b>Phone &#35;:</b> {{user.PHONE_NUM}}</p>
+<hr>
+
+
+<table class="table table-striped">
+    <h3>Current Reservations</h3>
+    <tr>
+        <th>Invoice &#35;</th>
+        <th>Hotel Name</th>
+        <th>Check-In Date</th>
+        <th>Check-Out Date</th>
+        <th>&#35; of Rooms</th>
+        <th>View Reservation</th>
+    </tr>
+    {% if current %}
+        {% for a in current %}
+            <tr>
+                <td>{{a.invoiceNo}}</td>
+                <td>{{a.hotel_name}}</td>
+                <td>{{a.inDate}}</td>
+                <td>{{a.outDate}}</td>
+                <td>{{a.numRooms}}</td>
+                <td>
+                    <form action="reservation/{{a.invoiceNo}}">
+                        <input type="submit" value="View" class="btn btn-default">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td>No Current Reservations</td>
+        </tr>
+    {% endif %}
+</table>
+
+
+<table class="table table-striped">
+    <h3>Upcoming Reservations</h3>
+    <tr>
+        <th>Invoice &#35;</th>
+        <th>Hotel Name</th>
+        <th>Check-In Date</th>
+        <th>Check-Out Date</th>
+        <th>&#35; of Rooms</th>
+        <th>View Reservation</th>
+    </tr>
+    {% if upcoming %}
+        {% for a in upcoming %}
+            <tr>
+                <td>{{a.invoiceNo}}</td>
+                <td>{{a.hotel_name}}</td>
+                <td>{{a.inDate}}</td>
+                <td>{{a.outDate}}</td>
+                <td>{{a.numRooms}}</td>
+                <td>
+                    <form action="reservation/{{a.invoiceNo}}">
+                        <input type="submit" value="View" class="btn btn-default">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td>No Upcoming Reservations</td>
+        </tr>
+    {% endif %}
+</table>
+
+
+<hr>
+
+
+<table class="table table-striped">
+    <h3>Past Reservations</h3>
+    <tr>
+        <th>Invoice &#35;</th>
+        <th>Hotel Name</th>
+        <th>Check-In Date</th>
+        <th>Check-Out Date</th>
+        <th>&#35; of Rooms</th>
+        <th>View Reservation</th>
+    </tr>
+    {% if past %}
+        {% for a in past %}
+            <tr>
+                <td>{{a.invoiceNo}}</td>
+                <td>{{a.hotel_name}}</td>
+                <td>{{a.inDate}}</td>
+                <td>{{a.outDate}}</td>
+                <td>{{a.numRooms}}</td>
+                <td>
+                    <form action="reservation/{{a.invoiceNo}}">
+                        <input type="submit" value="View" class="btn btn-default">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td>No Past Reservations</td>
+        </tr>
+    {% endif %}
+</table>
+
+<hr> 
+
+<table class="table table-striped">
+    <h3>Your Reviews</h3>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Rating</th>
+        <th>Author</th>
+        <th>Review Type</th>
+        <th>View Review</th>
+    </tr>
+    {% if reviews %}
+        {% for a in reviews %}
+            <tr>
+                <td>{{a.reviewID}}</td>
+                <td>{{a.title}}</td>
+                <td>{{a.rating}}</td>
+                <td>{{session.username}}</td>
+                <td>{{a.review_type}}</td>
+                <td>
+                    <form action="review/{{a.reviewID}}">
+                        <input type="submit" value="View" class="btn btn-default">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td>No Reviews</td>
+        </tr>
+    {% endif %}
+</table>
+
+
+
+{% endblock %} 

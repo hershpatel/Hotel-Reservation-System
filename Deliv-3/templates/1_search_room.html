@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>Make a Reservation</h1>
+<h3>Search Available Hotels</h3>
+<h4><small>Page 1 out of 4</small></h4>
+
+
+<table class="table table-striped">
+    <h3>Available Hotel Locations</i></h3>
+    <tr>
+        <th>Country</th>
+        <th>States</th>
+    </tr>
+    {% for key,value in loc.items() %}
+        <tr>
+            <td>{{key}}</td>
+            <td>{{", ".join(value)}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% from 'includes/_formhelpers.html' import render_field %}
+<form method='POST' action="">
+    <div class="form-group">
+        {{ render_field(form.country, class_='form-control') }}
+    </div>
+    <div class="form-group">
+        {{ render_field(form.state, class_='form-control') }}
+    </div>
+     <div class="form-group">
+        {{ render_field(form.num_rooms, class_='form-control') }}
+    </div>
+    <div class="form-group">
+        {{ render_field(form.check_in, class_='form-control') }}
+        <span>ex. 2-14-2017 means February 14th, 2017</span>
+    </div>
+    <div class="form-group">
+        {{ render_field(form.check_out, class_='form-control') }}
+        <span>ex. 4-2-2018 means April 2nd, 2018</span>
+    </div>
+    <p><input class="btn btn-primary" type="submit" value="Next"></p>
+</form>
+
+{% endblock %}

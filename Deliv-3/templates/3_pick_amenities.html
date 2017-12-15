@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>Choose Amenities</h1>
+<h3>Choose Breakfast Orders and Services</h3>
+<h4><small>Page 3 out of 4</small></h4>
+<a class='btn btn-warning' href='/search_room'>Start Over</a><p></p>
+
+<!-- print out all breakfast options and service options -->
+
+
+<h4>Total cost so far: ${{res.cost}}</h4>
+
+{% from 'includes/_formhelpers.html' import render_field %}
+<form method='POST' action="">
+    {% if not res.bfast_avail %}
+        <h4>Sorry, but this hotel does not offer any breakfast options.</h4>
+    {% else %}
+        <table class="table table-striped">
+            <h2>Available Breakfast Options</i></h2>
+            <tr>
+                <th>Breakfast Type</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+            {% for b in res.bfast_avail %}
+                <tr>
+                    <td>{{b.bType}}</td>
+                    <td>{{b.description}}</td>
+                    <td>{{b.bPrice}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    <h4>Max Daily Quantity of Breakfasts: {{res.capacity}}</h4>
+        <dl>
+            {% for b,q in zip(form.breakfasts,form.quantities) %}
+                <div class="form-group col-md-6">
+                    {{ render_field(b.Breakfast_Type, class_='form-control') }}
+                </div>
+                <div class="form-group col-md-6">
+                    {{ render_field(q.Quantity, class_='form-control') }}
+                </div>
+                <hr>
+            {% endfor %}
+        </dl>
+    {% endif %}
+    <br>
+    <br>
+    <br>
+    {% if not res.serv_avail %}
+        <h4>Sorry, but this hotel does not offer any services.</h4>
+    {% else %}
+        <table class="table table-striped">
+            <h2>Available Service Options</i></h2>
+                <tr>
+                    <th>Service Type</th>
+                    <th>Price</th>
+                </tr>
+            {% for b in res.serv_avail %}
+                <tr>
+                    <td>{{b.sType}}</td>
+                    <td>{{b.sCost}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <dl>
+            {% for b in form.services %}
+                <div class="form-group">
+                    {{ render_field(b.Service_Type, class_='form-control') }}
+                </div>
+            {% endfor %}
+        </dl>
+    {% endif %}
+    <p><input class="btn btn-primary" type="submit" value="Next"></p>
+</form>
+{% endblock %}

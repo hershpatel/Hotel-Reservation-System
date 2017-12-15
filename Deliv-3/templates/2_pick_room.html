@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>Choose Hotel Rooms</h1>
+<h3>Enter HotelID and Room &#35;s</h3>
+<h4><small>Page 2 out of 4</small></h4>
+<a class='btn btn-warning' href='/search_room'>Start Over</a><p></p>
+
+<!-- print out all available rooms in table form -->
+<table class="table table-striped">
+    <h2>Showing Hotels/Rooms in <i>{{res.state}}, {{res.country}}</i></h2>
+    {% for key, value in res.hotels_avail.items() %}
+        {% if value %}
+            <tr>
+                <th>--------------</th>
+            </tr>
+            <tr>
+                <th><i>Hotel ID:</i> {{value[0].hotelID}}</th>
+                <th>{{value[0].hotel_name}}</th>
+                <th>{{value[0].address}}, {{value[0].city}}</th>
+            </tr>
+            <tr>
+                <th>Room &#35;</th>
+                <th>Price</th>
+                <th>Capacity</th>
+                <th>Floor Number</th>
+                <th>Description</th>
+                <th>Room Type</th>
+                <th>Discount &#37;</th>
+            </tr>
+            {% for r in value %}
+                <tr>
+                    <td>{{r.room_num}}</td>
+                    <td>{{r.price}}</td>
+                    <td>{{r.capacity}}</td>
+                    <td>{{r.floor_no}}</td>
+                    <td>{{r.description}}</td>
+                    <td>{{r.room_type}}</td>
+                    <td>{{r.DiscountPct}}</td>  
+                </tr>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+</table>
+
+
+<h4><i>Check-In Date:</i> {{ res.check_in }}</h4>
+<h4><i>Check-Out Date:</i> {{ res.check_out }}</h4>
+<h4><i>Number of Rooms:</i> {{ res.num_rooms }}</h4>
+
+{% from 'includes/_formhelpers.html' import render_field %}
+<form method='POST' action="">
+    <div class="form-group">
+        {{ render_field(form.hotel, class_='form-control') }}
+    </div>
+    <dl>
+        {% for i in form.room_nums %}
+            <div class="form-group">
+                {{ render_field(i.room_num, class_='form-control') }}
+            </div>
+        {% endfor %}
+    </dl>
+    <p><input class="btn btn-primary" type="submit" value="Next"></p>
+</form>
+
+{% endblock %}

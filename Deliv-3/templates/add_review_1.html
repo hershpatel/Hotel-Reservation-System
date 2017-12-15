@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>Add Review</h1>
+<h3>Choose Hotel and Review Type</h3>
+<h4><small>Page 1 out of 2</small></h4>
+
+
+
+<table class="table table-striped">
+    <h2>Past Reservations</h2>
+    <tr>
+        <th>Invoice &#35;</th>
+        <th>Hotel Name</th>
+        <th>Check-In Date</th>
+        <th>Check-Out Date</th>
+        <th>&#35; of Rooms</th>
+        <th></th>
+    </tr>
+    {% for a in inv %}
+        <tr>
+            <td>{{a.invoiceNo}}</td>
+            <td>{{a.hotel_name}}</td>
+            <td>{{a.inDate}}</td>
+            <td>{{a.outDate}}</td>
+            <td>{{a.numRooms}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+
+
+{% from 'includes/_formhelpers.html' import render_field %}
+<form method='POST' action="">
+    <div class="form-group">
+        {{ render_field(form.hotel, class_='form-control') }}
+    </div>
+    <div class="form-group">
+        {{ render_field(form.revtype, class_='form-control') }}
+    </div>
+    <p><input class="btn btn-primary" type="submit" value="Next"></p>
+</form>
+
+{% endblock %}

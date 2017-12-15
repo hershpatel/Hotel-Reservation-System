@@ -1,0 +1,93 @@
+/* style.css */
+
+body, html {
+   border: 0;
+   padding: 0;
+   margin: 0;
+
+}
+.page-header{
+	background-color: #282828;
+	height: 100px;
+	overflow: hidden;
+	position: relative;
+	margin-top: 0px;
+	margin-bottom: -1px;
+
+}
+
+.menu-bar{
+    list-style: none;
+    float: right;
+	top:70%;
+	margin-right: 100px;
+	position: relative;
+
+}
+
+.menu-bar li {
+    display: inline;
+   	padding: 0px 10px;
+    border-right: solid 1px white;
+    color:white;
+
+}
+.page-background{
+text-align: center;
+     background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ), url('https://images6.alphacoders.com/349/349835.jpg') no-repeat center top;
+    margin-top: -10px;
+    padding-top: 20px;
+    text-align: center;
+    background-attachment: relative;
+    background-position: center center;
+    min-height: 660px;
+    width: 100%;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    width: cover;
+
+}
+
+#phrase1{
+	color: white;
+	font-size: 40px;
+}
+
+#white-font{
+	color: white;
+}
+
+#one{
+	text-align: center;
+	color: white;
+}
+
+#form-wrapper{
+	border: 20px solid #282828;
+	padding: 20px;
+	max-width: 700px;
+	width:80%;
+	margin: 0 auto;
+	margin-top: 2cm;
+
+}
+
+#form-reserve
+{
+	text-align: center;
+	align-content: center;
+}
+
+.box1{
+	margin: 0 auto;
+    width:400px;
+}

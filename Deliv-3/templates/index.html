@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="jumbotron text-center">
+    <h1>Welcome Hotel 21!</h1>
+    <p class="lead">9&#43;10&#61;21</p>
+    
+    {% if session.logged_in==NULL %}
+        <a href="/register" class="btn btn-primary">Register</a>
+        <a href="/login" class="btn btn-success">Login</a>
+    {% else %}
+        <p>What's good, {{session.username}}</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>Add Review</h1>
+<h3>Choose title and write review</h3>
+<h4><small>Page 2 out of 2</small></h4>
+<a class='btn btn-warning' href='/add_review_1'>Start Over</a><p></p>
+<h5>Invoice: {{ rev.invoice }}</h5>
+<h5>Hotel: {{rev.hotel}}</h5>
+<h5>Stay Dates: {{rev.check_in}} to {{rev.check_out}}</h5>
+<h5>Number of Rooms: {{rev.num_rooms}}</h5>
+<h5>Review Type: {{ rev.revtype }}</h5>
+
+
+{% if rev.revtype=='Room' %}
+    <table class="table table-striped">
+        <h2>About Review Options</h2>
+        <tr>
+            <th>Room Number &#40;About Review Column&#41;</th>
+            <th>Room Type</th>
+            <th></th>
+        </tr>
+        {% for a in rev.titles_avail %}
+            <tr>
+                <td>{{a.room_num}}</td>
+                <td>{{a.room_type}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% elif rev.revtype=='Breakfast' %}
+    <table class="table table-striped">
+        <h2>About Review Options</h2>
+        <tr>
+            <th>Breakfast Type &#40;About Review Column&#41;</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+        {% for a in rev.titles_avail %}
+            <tr>
+                <td>{{a.bType}}</td>
+                <td>{{a.description}}</td>
+                <td>{{a.bPrice}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% else %}
+    <table class="table table-striped">
+        <h2>About Review Options</h2>
+        <tr>
+            <th>Service Type &#40;About Review Column&#41;</th>
+            <th>Price</th>
+        </tr>
+        {% for a in rev.titles_avail %}
+            <tr>
+                <td>{{a.sType}}</td>
+                <td>{{a.sCost}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+{% from 'includes/_formhelpers.html' import render_field %}
+<form method='POST' action="">
+     <div class="form-group">
+        {{ render_field(form.actual_title, class_='form-control') }}
+    </div>
+    <div class="form-group">
+        {{ render_field(form.title, class_='form-control') }}
+    </div>
+    <div class="form-group">
+        {{ render_field(form.rating, class_='form-control') }}
+    </div>
+    <div class="form-group">
+        {{ render_field(form.body, class_='form-control') }}
+    </div>
+    <p><input class="btn btn-primary" type="submit" value="Write Review"></p>
+</form>
+
+{% endblock %}

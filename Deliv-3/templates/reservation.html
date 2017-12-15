@@ -1,0 +1,81 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>Invoice &#35;{{res.invoiceNo}}</h1>
+<a class='btn btn-warning' href='/dashboard'>Back</a><p></p>
+<div>
+    <hr>
+    <p><b>Reservation Made On: </b>{{res.resDate}}</p>
+    <p><b>Total Cost: </b>&#36;{{res.totalAmt}}</p>
+    <p><b>Check In Date: </b> {{rooms[0].inDate}}</p>
+    <p><b>Check Out Date: </b>{{rooms[0].outDate}}</p>
+    <p><b>Number of Days: </b>{{rooms[0].noOfDays}}</p>
+</div>
+
+<hr>
+
+<table class="table table-striped">
+    <h3>Room Information</h3>
+    <tr>
+        <th>Room Number</th>
+        <th>Room Type</th>
+        <th>Description</th>
+        <th></th>
+    </tr>
+    {% for a in rooms %}
+        <tr>
+            <td>{{a.room_num}}</td>
+            <td>{{a.room_type}}</td>
+            <td>{{a.description}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<hr>
+
+<table class="table table-striped">
+    <h3>Breakfast Information</h3>
+    <tr>
+        <th>Breakfast Type</th>
+        <th>Quantity</th>
+        <th>Description</th>
+    </tr>
+    {% if breakfasts %}
+        {% for a in breakfasts %}
+            <tr>
+                <td>{{a.bType}}</td>
+                <td>{{a.num_of_breakfasts}}</td>
+                <td>{{a.description}}</td>
+
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td>No Breakfasts in this Reservation</td>
+        </tr>
+    {% endif %}
+    
+</table>
+
+<hr>
+
+<table class="table table-striped">
+    <h3>Services Information</h3>
+    <tr>
+        <th>Service Type</th>
+    </tr>
+    {% if services %}
+        {% for a in services %}
+            <tr>
+                <td>{{a.sType}}</td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td>No Services in this Reservation</td>
+        </tr>
+    {% endif %}
+</table>
+
+{% endblock %}

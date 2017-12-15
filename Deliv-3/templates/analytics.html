@@ -1,0 +1,97 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>Customer Analytics <small>Welcome {{session.username}}</small></h1>
+<h3>Choose a beginning and end date</h3>
+<hr>
+
+{% from "includes/_formhelpers.html" import render_field %}
+<form method="POST" action="">
+    <div class="form-group">
+        {{render_field(form.begin, class_="form-control")}}
+        <span>ex. 2-14-2017 means February 14th, 2017</span>
+        <span><br>Earliest Date is&#58; 12-2-2016</span>
+    </div>
+    <div class="form-group">
+        {{render_field(form.end, class_="form-control")}}
+        <span>ex. 4-2-2018 means April 2nd, 2018</span>
+        <span><br>Latest Date is today's date.</span>
+    </div>
+    <div class="form-group">
+        {{render_field(form.stat, class_="form-control")}}
+    </div>
+    <p><input type="submit" name="" class="btn btn-primary" value="Search"></p>
+</form>
+
+<hr>
+
+{% if anal.stat=='1' %}
+    <table class="table table-striped">
+        <h2>Highest Rated Room Type Per Hotel</h2>
+        <tr>
+            <th>Hotel ID</th>
+            <th>Room Type</th>
+            <th>Average Rating</th>
+        </tr>
+        {% for a in anal.one %}
+            <tr>
+                <td>{{a.hotelID}}</td>
+                <td>{{a.room_type}}</td>
+                <td>{{a.Average}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% elif anal.stat=='2' %}
+    <table class="table table-striped">
+        <h2>Highest Rated Breakfast Across All Hotels</h2>
+        <tr>
+            <th>Breakfast Type</th>
+            <th>Highest Average Rating</th>
+        </tr>
+        {% for a in anal.two %}
+            <tr>
+                <td>{{a.bType}}</td>
+                <td>{{a.Average}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+{% elif anal.stat=='3' %}
+    <table class="table table-striped">
+        <h2>Highest Rated Breakfast Across All Hotels</h2>
+        <tr>
+            <th>Service Type</th>
+            <th>Highest Average Rating</th>
+        </tr>
+        {% for a in anal.three %}
+            <tr>
+                <td>{{a.sType}}</td>
+                <td>{{a.Average}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+{% elif anal.stat=='4' %}
+    <table class="table table-striped">
+        <h2>Top 5 Customers &#40;&#36;&#36;&#41;</h2>
+        <tr>
+            <th>CID</th>
+            <th>Name</th>
+            <th>Total Spent</th>
+        </tr>
+        {% for a in anal.four %}
+            <tr>
+                <td>{{a.CID}}</td>
+                <td>{{a.name}}</td>
+                <td>${{a.totalSpent}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+
+{% endblock %} 

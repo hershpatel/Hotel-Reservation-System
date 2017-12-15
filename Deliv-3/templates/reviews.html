@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>Reviews</h1>
+<ul class="list-group">
+    {% for r in reviews:%}
+        <li class="list-group-item"><a href="review/{{r.reviewID}}">{{r.title}} - {{r.review_type}}</a></li>
+    {% endfor %} 
+</ul>
+
+{% endblock %}

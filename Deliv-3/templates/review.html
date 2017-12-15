@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>{{review.title}}</h1>
+
+{% if review.review_type=='Room' %}
+    <div>
+        <hr>
+        <p><b>Written By: </b>{{user.username}}</p>
+        <p><b>Hotel: </b>{{hotel.hotel_name}}, {{hotel.address}}, {{hotel.city}}, {{hotel.state}}, {{hotel.country}}</p>
+        <p><b>Room Type: </b> {{data.room_type}}</p>
+        <p><b>Room Description: </b>{{data.description}}</p>
+        <hr>
+        <p><b>Rating: </b>{{review.rating}}</p>
+        <p><b>Review: </b>{{review.textcomment | safe}}</p>
+    </div>
+
+{% elif review.review_type=='Breakfast' %}
+    <div>
+        <hr>
+        <p><b>Written By: </b>{{user.username}}</p>
+        <p><b>Breakfast Type: </b>{{data.bType}}</p>
+        <hr>
+        <p><b>Rating: </b>{{review.rating}}</p>
+        <p><b>Review: </b>{{review.textcomment | safe}}</p>
+    </div>
+
+{% else %}
+    <div>
+        <hr>
+        <p><b>Written By: </b>{{user.username}}</p>
+        <p><b>Service Type: </b>{{data.sType}}</p>
+        <hr>
+        <p><b>Rating: </b>{{review.rating}}</p>
+        <p><b>Review: </b>{{review.textcomment | safe}}</p>
+    </div>
+{% endif %}
+
+ 
+{% endblock %}
